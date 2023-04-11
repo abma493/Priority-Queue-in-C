@@ -43,7 +43,7 @@ int16_t add(PriorityQueue* pq, const void* data)
     // percolate UP
     int32_t index = pq->size + 1;
     short found = FALSE;
-    while (found == FALSE && hasParent(pq, index) == TRUE)
+    while (found == FALSE && has_parent(pq, index) == TRUE)
     {
         int32_t parent = index / 2;
 
@@ -79,18 +79,18 @@ void poll(PriorityQueue* pq, void* data)
     int32_t index = 1;
     int16_t found = FALSE;
 
-    while (found == FALSE && hasLeft(pq, index) == TRUE)
+    while (found == FALSE && has_left(pq, index) == TRUE)
     {
         int32_t left = index * 2;
         int32_t right = index * 2 + 1;
 
         // child that will swap with index if necessary
         int32_t child = left;
-        int16_t has_right = hasRight(pq, index);
-        if(has_right == TRUE && pq->compare(pq->heap[right], pq->heap[left]) < 0)
+        int16_t h_right = has_right(pq, index);
+        if(h_right == TRUE && pq->compare(pq->heap[right], pq->heap[left]) < 0)
         {
             child = right;
-        } else if(has_right == TRUE && (pq->flags[left] == TRUE && pq->compare(pq->heap[right], pq->heap[left]) == 0))
+        } else if(h_right == TRUE && (pq->flags[left] == TRUE && pq->compare(pq->heap[right], pq->heap[left]) == 0))
         {
             child = right;
         } 
@@ -115,17 +115,17 @@ void swap(void** arr, int32_t i1, int32_t i2, int32_t mem_size)
     memcpy(*(arr + i2), temp, mem_size);
 }
 
-int8_t hasParent(PriorityQueue* pq, int32_t index)
+int8_t has_parent(PriorityQueue* pq, int32_t index)
 {
     return index > 1 ? TRUE : FALSE;
 }
 
-int8_t hasLeft(PriorityQueue* pq, int32_t index)
+int8_t has_left(PriorityQueue* pq, int32_t index)
 {
     return index * 2 <= pq->size ? TRUE :  FALSE;
 }
 
-int8_t hasRight(PriorityQueue* pq, int32_t index)
+int8_t has_right(PriorityQueue* pq, int32_t index)
 {
     return index * 2 + 1 <= pq->size ? TRUE : FALSE;
 }
@@ -137,6 +137,7 @@ void* peek(const PriorityQueue* pq)
         void* temp = pq->heap[1];
         return temp;
     }
+    return NULL;
 }
 
 void clear(PriorityQueue* pq)

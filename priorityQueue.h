@@ -21,13 +21,13 @@ typedef enum boolean { FALSE, TRUE } boolean;
 
 typedef struct PriorityQueue
 {
-    int16_t size;                           // current size of queue
-    int16_t capacity;                       // the capacity of this queue
-    ssize_t mem_size;                       // memory size of each queue element
-    short* flags;                           // "fair" duplicate insertion handler
-    void** heap;                            // queue internal structure
-    int (*compare)(void*, void*);           // compare function for queue element type
-    void (*to_str)(struct PriorityQueue*);  // "to string" function for element type
+    int16_t size;                                // current size of queue
+    int16_t capacity;                            // the capacity of this queue
+    ssize_t mem_size;                            // memory size of each queue element
+    short* flags;                                // "fair" duplicate insertion handler
+    void** heap;                                 // queue internal structure
+    int (*compare)(const void*, const void*);    // compare function for queue element type
+    void (*to_str)(const struct PriorityQueue*); // "to string" function for element type
 
 } PriorityQueue;
 
@@ -49,8 +49,8 @@ void* peek(const PriorityQueue*);
 void clear(PriorityQueue*);
 
 /*member functions for ancestral checks in heap tree */
-int8_t hasParent(PriorityQueue*, int32_t);
-int8_t hasLeft(PriorityQueue*, int32_t);
-int8_t hasRight(PriorityQueue*, int32_t);
+int8_t has_parent(PriorityQueue*, int32_t);
+int8_t has_left(PriorityQueue*, int32_t);
+int8_t has_right(PriorityQueue*, int32_t);
 
 #endif

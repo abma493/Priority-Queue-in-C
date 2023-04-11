@@ -2,8 +2,8 @@
 #include"types.h"
 #include<stdio.h>
 
-void to_str_int_pq(PriorityQueue*);
-void to_str_str_pq(PriorityQueue*);
+void to_str_int_pq(const PriorityQueue*);
+void to_str_str_pq(const PriorityQueue*);
 int32_t run_tests_as_int(PriorityQueue*);
 int32_t run_tests_as_str(PriorityQueue*);
 
@@ -14,13 +14,13 @@ int main(int argc, char const *argv[])
     PriorityQueue* pq_str;  
 
     printf("\n------------------- INT PQ TEST --------------------\n");
-    pq_int = priorityQueue(sizeof(int), &cmp_int, &to_str_int_pq, FALSE);
+    pq_int = priorityQueue(sizeof(int), &cmp_int, &to_str_int_pq);
     if(run_tests_as_int(pq_int) == 1)
         exit(EXIT_FAILURE);
 
     printf("\n------------------- STR PQ TEST --------------------\n");
 
-    pq_str = priorityQueue(30 * sizeof(char), &cmp_str, &to_str_str_pq, TRUE);
+    pq_str = priorityQueue(30 * sizeof(char), &cmp_str, &to_str_str_pq);
     if(run_tests_as_str(pq_str) == 1)
         exit(EXIT_FAILURE);
     printf("\n");
@@ -68,7 +68,7 @@ int32_t run_tests_as_int(PriorityQueue* pq_int)
     return EXIT_SUCCESS;
 }
 
-void to_str_int_pq(PriorityQueue* pq)
+void to_str_int_pq(const PriorityQueue* pq)
 {
     int i;
     printf("[ ");
@@ -81,13 +81,13 @@ void to_str_int_pq(PriorityQueue* pq)
     printf(" ]");
 }
 
-void to_str_str_pq(PriorityQueue* pq)
+void to_str_str_pq(const PriorityQueue* pq)
 {
     int i;
     printf("[ ");
     for (i = 1; i <= pq->size; i++)
     {
-        printf("%s", pq->heap[i]);
+        printf("%s", (char*) pq->heap[i]);
         if(i + 1 <= pq->size)
             printf(", ");
     }
