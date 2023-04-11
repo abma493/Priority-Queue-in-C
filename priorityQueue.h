@@ -24,19 +24,17 @@ typedef struct PriorityQueue
     int16_t size;                           // current size of queue
     int16_t capacity;                       // the capacity of this queue
     ssize_t mem_size;                       // memory size of each queue element
-    boolean ptr_flag;                       // queue element is of ptr type (for char*)
     short* flags;                           // "fair" duplicate insertion handler
     void** heap;                            // queue internal structure
-    int32_t (*compare)(void*, void*);       // compare function for queue element type
+    int (*compare)(void*, void*);           // compare function for queue element type
     void (*to_str)(struct PriorityQueue*);  // "to string" function for element type
 
 } PriorityQueue;
 
 /* Constructor for a priority queue*/
 PriorityQueue* priorityQueue(size_t mem_size, 
-                             int32_t (*fptr)(void*, void*), 
-                             void (*pptr)(struct PriorityQueue*),
-                             boolean ptr_flag);
+                             int (*fptr)(void*, void*), 
+                             void (*pptr)(struct PriorityQueue*));
 
 /* add function */
 int16_t add(PriorityQueue*, const void*);

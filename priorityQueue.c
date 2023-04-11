@@ -6,14 +6,12 @@ void swap(void**, int32_t, int32_t, int32_t);
 
 PriorityQueue* priorityQueue(size_t mem_size, 
                              int (*fptr)(void*, void*), 
-                             void (*pptr)(struct PriorityQueue*),
-                             boolean ptr_flag)
+                             void (*pptr)(struct PriorityQueue*))
 {
     PriorityQueue* pq = (PriorityQueue*) malloc(sizeof(PriorityQueue));
     pq->size = 0;
     pq->capacity = DEF_SZ;
     pq->mem_size = mem_size;
-    pq->ptr_flag = ptr_flag;
     pq->flags = (short*) malloc(DEF_SZ * sizeof(short));
     memset(pq->flags, FALSE, pq->capacity * sizeof(short));
     pq->heap = (void**) malloc(DEF_SZ * sizeof(void*));
@@ -40,10 +38,7 @@ int16_t add(PriorityQueue* pq, const void* data)
     pq->heap[pq->size + 1] = malloc(pq->mem_size);
 
     // insert the data into the heap
-    if(pq->ptr_flag == FALSE)
-        memcpy(pq->heap[pq->size + 1], &data, pq->mem_size);
-    else // data is of pointer type (aka a string or char*)
-        memcpy(pq->heap[pq->size + 1], data, pq->mem_size);
+    memcpy(pq->heap[pq->size + 1], data, pq->mem_size);
 
     // percolate UP
     int32_t index = pq->size + 1;

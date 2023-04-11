@@ -52,7 +52,7 @@ int32_t run_tests_as_int(PriorityQueue* pq_int)
     int i;
     for (i = 0; i < 7; i++)
     {
-        int f = arr[i];
+        int* f = &arr[i];
         int16_t t = add(pq_int, f);
         if(t == 1)
             return EXIT_FAILURE;
