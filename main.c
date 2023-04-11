@@ -1,7 +1,6 @@
 #include "priorityQueue.h"
 #include"types.h"
 #include<stdio.h>
-#include<string.h>
 
 void to_str_int_pq(PriorityQueue*);
 void to_str_str_pq(PriorityQueue*);

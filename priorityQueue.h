@@ -4,6 +4,8 @@
 /**
     A priority queue that can handle generic types and "fair" duplicate insertions.
 
+    This priority queue is implemented as a min-heap using an array.
+
     @author Abraham Martinez
     @version 1.0 
     @date April 2023
@@ -11,6 +13,7 @@
 
 #include<stdint.h> 
 #include<stdlib.h>
+#include<string.h>
 
 #define DEF_SZ 10
 

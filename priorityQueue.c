@@ -1,6 +1,5 @@
 #include "priorityQueue.h"
 #include<stdio.h>
-#include<string.h>
 
 /*swaps two elements in an array of a generic type*/
 void swap(void**, int32_t, int32_t, int32_t);
